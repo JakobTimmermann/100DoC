@@ -27,7 +27,6 @@ def find_password():
 
 
 
-
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def password_generator():
     password_list = []
@@ -47,16 +46,36 @@ def save_password():
     password = password_entry.get()
     email = user_entry.get()
 
-    new_data = {
-        website: {
-            "email": email,
-            "password": password,
-        }
-    }
-
     if len(website) == 0 or len(password) == 0:
         tk.messagebox.showerror(title="Ooops", message="Please do not leave any field empty!")
     else:
+
+        new_data = {
+            website: {
+                "email": email,
+                "password": password,
+            }
+        }
+        try:
+            with open("data.json", "r") as data_file:
+                data = json.load(data_file)
+            if website in data:
+                current_password = data[website]["password"]
+                update_entry = tk.messagebox.askokcancel(
+                                    title="Repetition detected",
+                                    message=f"{website} already in database."
+                                            f"Do you want to update old password ({current_password})?",
+                                    )
+        except FileNotFoundError:
+            pass
+        if not update_entry:
+            website_entry.delete(0, 'end')
+            website_entry.focus()
+            user_entry.delete(0, 'end')
+            user_entry.insert(0, "jakob.ch.timmermann@gmail.com")
+            password_entry.delete(0, 'end')
+            return 0
+
         is_okay = tk.messagebox.askokcancel(
                                   title=website,
                                   message=f"These are the details:\n"
