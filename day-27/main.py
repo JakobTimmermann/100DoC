@@ -24,7 +24,7 @@ text3.grid(column=1, row=1)
 text4 = tkinter.Label(text="Km")
 text4.grid(column=2, row=1)
 
-input_text = tkinter.Entry(width=7,justify='center')
+input_text = tkinter.Entry(width=7, justify='center')
 input_text.grid(column=1, row=0)
 input_text.config()
 input_text.insert(-1, "0")
