@@ -5,25 +5,16 @@ student_dict = {
     "score": [56, 76, 98]
 }
 
-# Looping through dictionaries:
-for (key, value) in student_dict.items():
-    # Access key and value
-    pass
-
 student_data_frame = pd.DataFrame(student_dict)
 
-# Loop through rows of a data frame
-for (index, row) in student_data_frame.iterrows():
-    # Access index and row
-    # Access row.student or row.score
-    pass
-
-# Keyword Method with iterrows()
-
-#{"A": "Alfa", "B": "Bravo"}
 df = pd.read_csv("nato_phonetic_alphabet.csv")
 code = {row.letter:row.code for (index, row) in df.iterrows()}
 
-
-word = input("Enter a word: ")
-print([code[w.upper()] for w in word])
+running = True
+while running:
+    word = input("Enter a word: ").upper()
+    try:
+        print([code[w] for w in word])
+        running = False
+    except KeyError:
+        print("Sorry only letters in the alphabet.")
