@@ -9,16 +9,14 @@ translation = ""
 flip_timer = None
 # ---------------------------- WORD MANGER ------------------------------- #
 try:
-    data = pd.read_csv("data/palabras_espanolas_quedado.csv",index_col=0, header=0).to_dict()
+    data = pd.read_csv("data/palabras_espanolas_quedado.csv", header=None, index_col=0).squeeze("columns").to_dict()
 except FileNotFoundError:
     data = pd.read_csv("data/palabras_espanolas.csv", header=None, index_col=0).squeeze("columns").to_dict()
 
 
 def lo_se():
-    print(word)
-    print(data)
     del data[word]
-    pd.DataFrame(data.items()).to_csv("data/palabras_espanolas_quedado.csv")
+    pd.DataFrame(data.items()).to_csv("data/palabras_espanolas_quedado.csv", index=False, header=False)
     pick_a_word()
 
 
@@ -29,7 +27,6 @@ def pick_a_word():
     except ValueError:
         pass
     word = random.choice(list(data))
-    print(data)
     translation = data[word]
     canvas.itemconfig(palabra, text=word, fill="black")
     canvas.itemconfig(idioma, text="Espanol", fill="black")
@@ -42,6 +39,13 @@ def flip_card():
     canvas.itemconfig(card_image, image=card_back)
     canvas.itemconfig(palabra, text=translation, fill="white")
     canvas.itemconfig(idioma, text="German", fill="white")
+
+
+# ---------------------------- UPDATE TRANSLATION ------------------------------ #
+def update_translation():
+    data[word] = add_translation.get()
+    pd.DataFrame(data.items()).to_csv("data/palabras_espanolas_quedado.csv", index=False, header=False)
+    pick_a_word()
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -58,15 +62,20 @@ canvas = tk.Canvas(width=900, height=800, highlightthickness=0, bg=BACKGROUND_CO
 card_image = canvas.create_image(450, 450, image=card_front)
 idioma = canvas.create_text(450, 300, text="Espanol", fill="black", font=(FONT_NAME, 15, "italic"))
 palabra = canvas.create_text(450, 450, text=word, fill="black", font=(FONT_NAME, 22, "bold"))
-canvas.grid(column=0, row=0, columnspan=2)
+canvas.grid(column=0, row=0, columnspan=3)
 
 
 check_mark_image = tk.PhotoImage(file="images/right.png")
 red_cross = tk.PhotoImage(file="images/wrong.png")
 wrong_button = tk.Button(image=red_cross, highlightthickness=0, command=pick_a_word)
-wrong_button.grid(column=1, row=1)
+wrong_button.grid(column=2, row=2)
 right_button = tk.Button(image=check_mark_image, highlightthickness=0, command=lo_se)
-right_button.grid(column=0, row=1)
+right_button.grid(column=0, row=2)
+
+add_translation = tk.Entry(width=19)
+add_translation.grid(column=1, row=1)
+update_button = tk.Button(text="Change translation", highlightthickness=0, command=update_translation)
+update_button.grid(column=1, row=2)
 
 pick_a_word()
 
