@@ -31,7 +31,7 @@ def pick_a_word():
     canvas.itemconfig(palabra, text=word, fill="black")
     canvas.itemconfig(idioma, text="Espanol", fill="black")
     canvas.itemconfig(card_image, image=card_front)
-    flip_timer = window.after(3000, flip_card)
+    flip_timer = window.after(4000, flip_card)
 
 
 # ---------------------------- FLIP CARD ------------------------------ #

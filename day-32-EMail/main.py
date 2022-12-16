@@ -2,10 +2,10 @@ import datetime as dt
 import smtplib
 import pandas as pd
 import random
-import sys
+import requests
 
 my_email = "daisiduuke@gmail.com"
-with open("password.txt") as pfile:
+with open("../password.txt") as pfile:
     app_password = pfile.read()
 
 day = dt.datetime.now().day
