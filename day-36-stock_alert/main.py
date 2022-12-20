@@ -1,13 +1,13 @@
 import requests
 import pandas as pd
-import datetime as dt
 import smtplib
 
 COIN = "BTC"
 COIN_NAME = "Bitcoin"
+PERCENT_TRIGGER = 1
 
 
-def get_price_move():
+def get_price_move_in_percent():
     endpoint = "https://www.alphavantage.co/query"
     trade_api_key = "C5OWVV1SMH8JZ23O"
     parameters = {
@@ -21,8 +21,8 @@ def get_price_move():
     data = response.json()["Time Series (Digital Currency Daily)"]
     df = pd.DataFrame.from_dict(data, orient="index")
     open_price, close_price = df[["1a. open (USD)", "4a. close (USD)"]].values[1, :]
-    move = (float(close_price) - float(open_price))/float(open_price)
-    return move
+    move = (float(close_price) - float(open_price)) / float(open_price)
+    return move*100
 
 
 def get_news():
@@ -30,18 +30,18 @@ def get_news():
     endpoint = "https://newsapi.org/v2/everything"
     news_params = {
         "apiKey": news_api_key,
-        "from": dt.datetime.today().strftime("%y-%m-%d"),
+        # "from": dt.datetime.today().strftime("%y-%m-%d"),
         "sortBy": "popularity",
-        "q": "Bitcoin",
+        "qinTitle": COIN_NAME,
     }
     news_data = requests.get(endpoint, params=news_params)
     articles = news_data.json()["articles"]
-    articles = [a["title"] for a in articles if "Bitcoin" in a["description"]]
-    string = "\n".join(articles[:3])
+    string = "\n".join([a["title"] for a in articles][:3])
     return string
 
 
 def send_mail(subject, body):
+    body = body.encode('ascii', 'ignore').decode('ascii')
     my_email = "daisiduuke@gmail.com"
     with open("../password.txt") as pfile:
         app_password = pfile.read()
@@ -55,9 +55,9 @@ def send_mail(subject, body):
             msg=f"Subject:{subject}\n\n{body}")
 
 
-price_move = get_price_move()
-if abs(price_move) > 0.00001:
-    headline = f"BTC: {round(price_move*100,1)}%"
-    news = get_news()
+price_move_in_percent = get_price_move_in_percent()
+if abs(price_move_in_percent) > PERCENT_TRIGGER:
     print("Sending EMails")
+    headline = f"{COIN}: {round(price_move_in_percent, 1)}%"
+    news = get_news()
     send_mail(headline, news)
