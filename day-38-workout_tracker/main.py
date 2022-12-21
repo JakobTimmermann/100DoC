@@ -5,7 +5,7 @@ import os
 SHEET_NAME = "trackIt"
 PROJECT_NAME = "myWorkoutTracker"
 USER_NAME = os.environ["SHEETY_USERNAME"]
-SHEETY_PASSWORD = os.environ["PASSWORD"]
+SHEETY_PASSWORD = os.environ["SHEETY_PASSWORD"]
 
 nutritionix_api_id = "f68380b3"
 nutritionix_api_key = "48271bcf2ec0666b34d534d614f7476d"

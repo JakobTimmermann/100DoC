@@ -1,3 +1,5 @@
+import os
+
 import requests
 import pandas as pd
 import smtplib
@@ -43,8 +45,8 @@ def get_news():
 def send_mail(subject, body):
     body = body.encode('ascii', 'ignore').decode('ascii')
     my_email = "daisiduuke@gmail.com"
-    with open("../password.txt") as pfile:
-        app_password = pfile.read()
+    app_password = os.getenv("DAISI_PASSWORD")
+    print(app_password)
 
     with smtplib.SMTP("smtp.gmail.com") as connection:
         connection.starttls()
