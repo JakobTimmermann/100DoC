@@ -46,7 +46,6 @@ def send_mail(subject, body):
     body = body.encode('ascii', 'ignore').decode('ascii')
     my_email = "daisiduuke@gmail.com"
     app_password = os.getenv("DAISI_PASSWORD")
-    print(app_password)
 
     with smtplib.SMTP("smtp.gmail.com") as connection:
         connection.starttls()
