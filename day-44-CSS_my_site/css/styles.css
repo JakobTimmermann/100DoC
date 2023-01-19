@@ -5,28 +5,188 @@ div {
 body {
     margin: 0;
     text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+hr {
+    border-style: none;
+    border-top-style: dotted;
+    width: 6%;
+    border-color: #567189;
+    border-width: 5px;
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 
 h1 {
-    margin-top: 0;
-    padding: 20px;
+    margin-top: 0px;
+    padding: 80px;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 444%;
+    color: #13005A;
     /* 4 values: margin top right bottom left
        2 values: margin top/bottom right/left */
     /*
     width: 10%;
+    font-size: 4.44rem;
     margin: 0 auto 0 auto;
     */
 }
+
+h2 {
+    margin-top: 10px;
+    margin-bottom: 0;
+    padding: 0px;
+    font-size: 2.0rem;
+    font-family: 'Merriweather', serif;
+    color: #13005A;
+    font-weight: normal;
+    line-height: 2;
+}
+
 h3 {
     margin-top: 0;
-    padding: 20px;
+    margin-bottom: 0;
+    padding: 10px;
+    font-family: 'Merriweather', serif;
+    color: #13005A;
+    font-weight: normal;
+}
+
+p {
+    line-height: 1.5;
+    padding-top: 10px;
+    margin-top: 0;
+    }
+
+a {
+    color: #11999E
+}
+
+a:hover {
+    color: #FFF8E1;
+}
+.name {
+    padding-top: 80px;
+    padding-bottom: 10px;
 }
 
 .mountain_image {
-    width : 100%;
+    width: 100%;
     z-index: 0;
+    padding-top: 0;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.65) 60%,rgba(0,0,0,0) 0%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%,rgba(0,0,0,0) 100%);
+    bottom:120px;
+    position: relative;
+    }
+.mountain_box {
+    position: relative;
+}
+.profile_picture {
+    width: 23%;
+    border: 0.5px solid #13005A;
+    border-radius: 50%;
+    background-color: #F1F7B5;
     }
 
-.center {
-    text-align: center;
+.profile {
+   padding: 10px;
+   }
+
+.intro_text {
+    width: 40%;
+    margin: auto;
+    padding-bottom: 10px;
+    }
+
+.skill_ska_img {
+    width: 7.0rem;
+    float: left;
+    margin-right: 20px;
+    padding-bottom: 10px;
+    }
+
+.skill_hike_img {
+    width: 7.0rem;
+    float: right;
+    margin-left: 20px;
+    padding-bottom: 10px;
+    }
+
+.skill-row {
+    width: 50%;
+    margin: 20px auto;
+    text-align: left;
+    padding-bottom: 10px;
+    }
+
+.middle_container {
+    padding-bottom: 30px;
+    position: relative;
+    bottom: 100px;
 }
+.bottom_container {
+    background-color: #9DF1DF;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    position: relative;
+    bottom: 100px;
+}
+
+.footer_link {
+    padding: 10px;
+}
+
+.btn {
+  background: #11cdd4;
+  background-image: -webkit-linear-gradient(top, #11cdd4, #11999e);
+  background-image: -moz-linear-gradient(top, #11cdd4, #11999e);
+  background-image: -ms-linear-gradient(top, #11cdd4, #11999e);
+  background-image: -o-linear-gradient(top, #11cdd4, #11999e);
+  background-image: linear-gradient(to bottom, #11cdd4, #11999e);
+  -webkit-border-radius: 16;
+  -moz-border-radius: 16;
+  border-radius: 16px;
+  font-family: 'Montserrat', sans-serif;
+  color: #E3F6FF;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 8px 16px 8px 16px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #9DF1DF;
+  background-image: -webkit-linear-gradient(top, #9DF1DF, #2bc4ad);
+  background-image: -moz-linear-gradient(top, #9DF1DF, #2bc4ad);
+  background-image: -ms-linear-gradient(top, #9DF1DF, #2bc4ad);
+  background-image: -o-linear-gradient(top, #9DF1DF, #2bc4ad);
+  background-image: linear-gradient(to bottom, #9DF1DF, #2bc4ad);
+  text-decoration: none;
+}
+
+.contact_message{
+    width: 40%;
+    margin: auto;
+    padding-bottom: 30px;
+    }
+
+.copyright {
+    color: #FFF8E1;
+    font-size: 0.75rem;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+/*
+.sticky-image-wrapper{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    }
+
+.sticky-image-wrapper img{
+     display: table;
+     position: relative;
+     margin: auto;
+} */
