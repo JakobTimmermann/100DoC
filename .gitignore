@@ -2,3 +2,5 @@ password.txt
 day-31-flashcard/data/palabras_espanolas_quedado.csv
 */__pycache__/
 */replit*
+*/.cache
+*/token.txt
