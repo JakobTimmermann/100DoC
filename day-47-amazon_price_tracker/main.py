@@ -26,7 +26,7 @@ if viaSoup:
     price = soup.find(name="span", class_="apexPriceToPay").text
 
 if not viaSoup:
-    chrome_driver_path  = "/home/daisy/data/udemy/100DoC/chromedriver"
+    chrome_driver_path = "/home/daisy/data/udemy/100DoC/chromedriver"
     driver = webdriver.Chrome(executable_path=chrome_driver_path)
     driver.get(URL)
     price = driver.find_element(By.XPATH, '//*[@id="corePrice_desktop"]/div/table/tbody/tr[2]/td[2]/span[1]/span[2]')

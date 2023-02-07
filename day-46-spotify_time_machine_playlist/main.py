@@ -18,7 +18,7 @@ date = input("Which year do you want to travel? Format: YYYY-MM-DD:  ")
 if date == "":
     date = "2005-05-30"
 BASE_URL = "https://www.billboard.com/charts/hot-100/"
-playlist= sp.user_playlist_create(user=user_id, name=f"Billboard Top100 from {date}", public=False)
+playlist = sp.user_playlist_create(user=user_id, name=f"Billboard Top100 from {date}", public=False)
 
 response = requests.get(BASE_URL + date)
 page = response.text
@@ -27,16 +27,16 @@ song_tags = [tag.find_all(name="h3", class_="c-title") for tag in soup.find_all(
 artist_tags = [tag.find_all(name="span", class_="a-no-trucate") for tag in soup.find_all(name="li", class_="o-chart-results-list__item")]
 songs = [l[0].text.strip() for l in song_tags if len(l) > 0]
 artists = [l[0].text.strip() for l in artist_tags if len(l) > 0]
-
 song_uris = []
 year = date.split("-")[0]
-for song in songs:
-    result = sp.search(q=f"track:{song} year:{year}", type='track')
+for n, song in enumerate(songs):
+    artist = artists[n]
+    artist = artist.split("Featuring")[0]
+    result = sp.search(q=f"track:{song} artist:{artist}", type='track')
     try:
         uri = result["tracks"]["items"][0]["uri"]
         song_uris.append(uri)
     except IndexError:
-        print(f"{song} does't exist in Spotify. Skipped.")
+        print(f"{song} by {artist} does't exist in Spotify. Skipped.")
 
 sp.playlist_add_items(playlist_id=playlist["id"], items=song_uris)
-
