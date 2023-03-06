@@ -32,6 +32,7 @@ def pick_a_word():
     canvas.itemconfig(idioma, text="Espanol", fill="black")
     canvas.itemconfig(card_image, image=card_front)
     flip_timer = window.after(4000, flip_card)
+    remaining_words.config(text=f"Palabras restantes: {len(data)}")
 
 
 # ---------------------------- FLIP CARD ------------------------------ #
@@ -62,20 +63,23 @@ canvas = tk.Canvas(width=900, height=800, highlightthickness=0, bg=BACKGROUND_CO
 card_image = canvas.create_image(450, 450, image=card_front)
 idioma = canvas.create_text(450, 300, text="Espanol", fill="black", font=(FONT_NAME, 15, "italic"))
 palabra = canvas.create_text(450, 450, text=word, fill="black", font=(FONT_NAME, 22, "bold"))
-canvas.grid(column=0, row=0, columnspan=3)
+canvas.grid(column=0, row=1, columnspan=3)
 
+
+remaining_words = tk.Label(text=f"Palabras restantes: {len(data)}", bg=BACKGROUND_COLOR, font=(FONT_NAME, 9, "bold"))
+remaining_words.grid(column=1, row=0)
 
 check_mark_image = tk.PhotoImage(file="images/right.png")
 red_cross = tk.PhotoImage(file="images/wrong.png")
 wrong_button = tk.Button(image=red_cross, highlightthickness=0, command=pick_a_word)
-wrong_button.grid(column=2, row=2)
+wrong_button.grid(column=2, row=3)
 right_button = tk.Button(image=check_mark_image, highlightthickness=0, command=lo_se)
-right_button.grid(column=0, row=2)
+right_button.grid(column=0, row=3)
 
 add_translation = tk.Entry(width=19)
-add_translation.grid(column=1, row=1)
+add_translation.grid(column=1, row=2)
 update_button = tk.Button(text="Change translation", highlightthickness=0, command=update_translation)
-update_button.grid(column=1, row=2)
+update_button.grid(column=1, row=3)
 
 pick_a_word()
 
