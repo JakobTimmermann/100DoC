@@ -31,7 +31,7 @@ def pick_a_word():
     canvas.itemconfig(palabra, text=word, fill="black")
     canvas.itemconfig(idioma, text="Espanol", fill="black")
     canvas.itemconfig(card_image, image=card_front)
-    flip_timer = window.after(4000, flip_card)
+    flip_timer = window.after(2000, flip_card)
     remaining_words.config(text=f"Palabras restantes: {len(data)}")
 
 
@@ -45,6 +45,7 @@ def flip_card():
 # ---------------------------- UPDATE TRANSLATION ------------------------------ #
 def update_translation():
     data[word] = add_translation.get()
+    add_translation.delete(0, tk.END)
     pd.DataFrame(data.items()).to_csv("data/palabras_espanolas_quedado.csv", index=False, header=False)
     pick_a_word()
 

@@ -56,9 +56,9 @@ def send_mail(subject, body):
             msg=f"Subject:{subject}\n\n{body}")
 
 
-price_move_in_percent = get_price_move_in_percent()
-if abs(price_move_in_percent) > PERCENT_TRIGGER:
-    print("Sending EMails")
-    headline = f"{COIN}: {round(price_move_in_percent, 1)}%"
-    news = get_news()
-    send_mail(headline, news)
+#price_move_in_percent = get_price_move_in_percent()
+#if abs(price_move_in_percent) > PERCENT_TRIGGER:
+#    print("Sending EMails")
+#    headline = f"{COIN}: {round(price_move_in_percent, 1)}%"
+#    news = get_news()
+#    send_mail(headline, news)
