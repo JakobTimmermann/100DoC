@@ -14,6 +14,16 @@ def home():
     return render_template("index.html", posts=all_posts, year=YEAR)
 
 
+@app.route('/about')
+def about():
+    return render_template("about.html", year=YEAR)
+
+
+@app.route('/contact')
+def contact():
+    return render_template("contact.html", year=YEAR)
+
+
 @app.route('/post/<num>')
 def post(num):
     blog_url = "https://api.npoint.io/8b9615625ad7fe992710"
@@ -23,4 +33,5 @@ def post(num):
 
 
 if __name__ == "__main__":
+    # Run app in debug mode
     app.run(debug=True)
