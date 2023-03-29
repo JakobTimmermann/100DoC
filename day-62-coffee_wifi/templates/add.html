@@ -1,0 +1,26 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="/static/css/styles.css">
+{% endblock %}
+
+{% block title %}Kneipenpionier{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+
+      <h1>Neue Kneipe endeckt? Her damit</h1>
+       {{ wtf.quick_form(form, novalidate=True) }}
+
+	  <p class="space-above"><a href={{url_for('cafes')}}>Kneipenübersicht</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

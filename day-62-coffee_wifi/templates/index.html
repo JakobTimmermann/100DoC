@@ -1,0 +1,25 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="/static/css/styles.css">
+{% endblock %}
+
+{% block title %}Bier und Holz{% endblock %}
+
+{% block content %}
+<div class="jumbotron text-center">
+    <div class="container">
+        <h1 class="display-4">🍺 Bier und Holz 🪵</h1>
+        <p class="lead">Du willst wissen, wo du ein gemütliches Bier am Holz trinken kannst?</p>
+        <hr class="my-4">
+        <p>Dann bist du hier genau richtig! Wir haben Kneipen, Boarzn, Kaschemmen, Spelunken und Bars für dich
+           besucht</p>
+        <p> Frei nach dem Motto: Außer Tresen nichts gewesen...</p>
+        <a class="btn btn-warning btn-lg" href={{url_for('cafes')}} role="button">Ein Bier bitte!</a>
+        <!--        <a class="btn btn-warning btn-lg" href="/cafes" role="button">Show Me!</a>-->
+    </div>
+</div>
+
+{% endblock %}
