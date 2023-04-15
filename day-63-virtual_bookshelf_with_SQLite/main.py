@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
@@ -39,7 +39,6 @@ def home():
     with app.app_context():
         db.create_all()
         all_books = db.session.query(Book).all()
-        data = request.form
     return render_template("index.html", books=all_books)
 
 
@@ -68,7 +67,6 @@ def edit(book_id):
         if form.validate_on_submit():
             book_to_update.rating = form.rating.data
             db.session.commit()
-            all_books = db.session.query(Book).all()
             return redirect(url_for('home'))
     return render_template("edit.html", book=book_to_update, form=form)
 
@@ -79,7 +77,6 @@ def delete(book_id):
         book_to_delete = Book.query.get(book_id)
         db.session.delete(book_to_delete)
         db.session.commit()
-        all_books = db.session.query(Book).all()
     return redirect(url_for('home'))
 
 
